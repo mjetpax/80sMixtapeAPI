@@ -9,7 +9,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-var startTime = time.Now()
+var startTime = time.Now().UTC()
 
 // Health check struct stores values for output to health check requests.
 type Health struct {
