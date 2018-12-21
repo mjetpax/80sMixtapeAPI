@@ -8,28 +8,35 @@
 
 Getting started locally is simple. Run the following commands in your terminal.
 
-### Start the app
+### Running with Docker
+
+```bash
+docker build -t 80s_mixtape_api .
+docker run -p 80:8080 80s_mixtape_api
+```
+
+
+### Alternative - running the Go app locally
 
 ```bash
 go build .
-```
-
-```bash
 ./80sMixtapeAPI
 ```
+
+Output: `80's Mixtape API is listening to some rad jamz on port :8080!`
 
 ### Use cUrl to ping endpoints
 
 Hit the health check endpoint with cUrl.
 
 ```bash
-curl localhost:8080/health
+curl http://0.0.0.0:80/health
 ```
 
 For pretty formatted returns use jq. Example:
 
 ```bash
-curl localhost:8080/health | jq .
+curl http://0.0.0.0:80/health | jq .
 ```
 
 Response:
@@ -41,6 +48,3 @@ Response:
   "up_time": "40.927235051s"
 }
 ```
-
-
-Response: `80's Mixtape API is listening to some rad jamz!`
