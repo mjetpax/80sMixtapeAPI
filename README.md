@@ -26,4 +26,21 @@ Hit the health check endpoint with cUrl.
 curl localhost:8080/health
 ```
 
+For pretty formatted returns use jq. Example:
+
+```bash
+curl localhost:8080/health | jq .
+```
+
+Response:
+
+```json
+{
+  "application_name": "80's Mixtape API",
+  "message": "80's Mixtape API is running smooth!",
+  "up_time": "40.927235051s"
+}
+```
+
+
 Response: `80's Mixtape API is listening to some rad jamz!`
