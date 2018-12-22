@@ -1,0 +1,23 @@
+version: '2'
+services:
+  database:
+    image: postgres:9.4-alpine
+    environment:
+      - POSTGRES_USER=database123
+      - POSTGRES_PASSWORD=database123
+      - POSTGRES_DB=80sMixtapeAPI
+    ports:
+      - "5432:5432"
+  80s_mixtape_api:
+    image: golang:alpine
+    volumes:
+      - .:/go/src/github.com/mjetpax/80sMixtapeAPI
+    working_dir: /go/src/github.com/mjetpax/80sMixtapeAPI
+    command: |
+      sh -c 'apk add git --update
+      go get github.com/githubnemo/CompileDaemon
+      CompileDaemon -command=./80sMixtapeAPI -log-prefix=false -exclude-dir=.git'
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"

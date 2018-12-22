@@ -11,7 +11,7 @@ import (
 const port = ":8080"
 
 func init() {
-	log.Println("80's Mixtape API is listening to some rad jamz on port " + port + "!")
+	log.Println("80's Mixtape API is listening on port " + port + "!")
 }
 
 func main() {

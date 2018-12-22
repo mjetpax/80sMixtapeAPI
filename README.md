@@ -8,13 +8,22 @@ Author: Michael Babcock <mjetpax@gmail.com>
 
 Getting started locally is simple. Run the following commands in your terminal.
 
-### Running with Docker
+### Running with Docker Compose
+
+Note, that while developing & running with docker-compose, 80's Mixtape API will auto-compile and redeploy on script update... yay!
+
+```bash
+docker-compose up
+```
+
+(Seriously, that's it.)
+
+### Alternative - running with Docker
 
 ```bash
 docker build -t 80s_mixtape_api .
 docker run -p 8080:8080 80s_mixtape_api
 ```
-
 
 ### Alternative - running the Go app locally
 
