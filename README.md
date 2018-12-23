@@ -57,3 +57,11 @@ Response:
   "up_time": "40.927235051s"
 }
 ```
+
+## Testing
+
+Use this command for running unit tests.
+
+```bash
+go test -v -cover -covermode=atomic $(go list ./... | grep -v /vendor/)
+```
