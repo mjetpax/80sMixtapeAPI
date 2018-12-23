@@ -6,11 +6,13 @@ import (
 
 	"github.com/julienschmidt/httprouter"
 	"github.com/mjetpax/80sMixtapeAPI/api"
+	"github.com/mjetpax/80sMixtapeAPI/config"
 )
 
 const port = ":8080"
 
 func init() {
+	config.LoadConfig()
 	log.Println("80's Mixtape API is listening on port " + port + "!")
 }
 
