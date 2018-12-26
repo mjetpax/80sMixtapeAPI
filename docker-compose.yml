@@ -1,6 +1,6 @@
-version: '2'
+version: '3'
 services:
-  database:
+  db:
     image: postgres:9.4-alpine
     environment:
       - POSTGRES_USER=database123
@@ -8,6 +8,8 @@ services:
       - POSTGRES_DB=80sMixtapeAPI
     ports:
       - "5432:5432"
+    volumes:
+      - /var/lib/postgresql/data
   80s_mixtape_api:
     image: golang:alpine
     volumes:
@@ -21,3 +23,5 @@ services:
       - .env
     ports:
       - "8080:8080"
+    depends_on:
+      - db
