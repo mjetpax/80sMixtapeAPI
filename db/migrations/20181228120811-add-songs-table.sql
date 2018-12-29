@@ -1,7 +1,7 @@
 
 -- +migrate Up
 CREATE TABLE songs (
-    id              INT     PRIMARY KEY NOT NULL,
+    id              SERIAL  PRIMARY KEY NOT NULL,
     title           TEXT    NOT NULL,
     artist          TEXT    NOT NULL,
     year            INT     NOT NULL,
