@@ -3,17 +3,19 @@ package models
 import (
 	"database/sql"
 
-	// pq is needed to communitcate to postgresql.
+	// pq is needed to communicate to postgresql.
 	_ "github.com/lib/pq"
 	"github.com/mjetpax/80sMixtapeAPI/config"
 )
 
 // Song is a struct for housing song data.
 type Song struct {
-	Artist string
-	Title  string
-	Year   int
-	Video  string
+	Artist        string
+	Title         string
+	Year          int
+	Video         string
+	DurationLabel string
+	Duration      int
 }
 
 // GetSongs retrieves songs from the database.
