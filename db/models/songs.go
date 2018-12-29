@@ -10,8 +10,8 @@ import (
 
 // Song is a struct for housing song data.
 type Song struct {
-	Artist        string
 	Title         string
+	Artist        string
 	Year          int
 	Video         string
 	DurationLabel string
