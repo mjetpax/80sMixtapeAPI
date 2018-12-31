@@ -30,6 +30,7 @@ func main() {
 	// Set up some routes
 	router := httprouter.New()
 	router.GET("/health", api.GetHealth)
+	router.GET("/songs", api.GetSongs)
 
 	log.Fatal(http.ListenAndServe(port, router))
 }
