@@ -1,10 +1,12 @@
 package config
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 )
 
 // Env set configuration struct
@@ -12,7 +14,7 @@ var Env Environment
 
 // Environment struct for storing configuration settings.
 type Environment struct {
-	DB     *sql.DB
+	DB     *sqlx.DB
 	DBHost string
 	DBPort string
 	DBName string
@@ -31,7 +33,7 @@ func InitEnv() {
 	Env.DBConn = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		Env.DBHost, Env.DBPort, Env.DBUser, Env.DBPass, Env.DBName)
 
-	db, err := sql.Open("postgres", Env.DBConn)
+	db, err := sqlx.Connect("postgres", Env.DBConn)
 	if err != nil {
 		log.Panic(err)
 	}
