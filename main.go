@@ -13,12 +13,19 @@ import (
 const port = ":8080"
 
 func init() {
-	config.LoadConfig()
+	// Initialize environmental settings, including database connection.
+	config.InitEnv()
+
+	// Make database migrations as needed.
 	db.MigrateDB()
+
+	// Ready to go!
 	log.Println("80's Mixtape API is listening on port " + port[1:] + "!")
 }
 
 func main() {
+	// Close database connection when app exits.
+	defer config.Env.DB.Close()
 
 	// Set up some routes
 	router := httprouter.New()
