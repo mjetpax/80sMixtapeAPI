@@ -1,7 +1,6 @@
 package db
 
 import (
-	"database/sql"
 	"log"
 
 	// pq is needed to communitcate to postgresql.
@@ -17,13 +16,7 @@ func MigrateDB() {
 		Dir: "db/migrations",
 	}
 
-	db, err := sql.Open("postgres", config.Env.DatabaseConn)
-	if err != nil {
-		log.Printf("Error connecting to database: %d \n", err)
-	}
-	defer db.Close()
-
-	n, err := migrate.Exec(db, "postgres", migrations, migrate.Up)
+	n, err := migrate.Exec(config.Env.DB, "postgres", migrations, migrate.Up)
 	if err != nil {
 		log.Printf("Error during database migration: %d \n", err)
 
