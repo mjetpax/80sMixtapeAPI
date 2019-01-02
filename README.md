@@ -32,7 +32,7 @@ go build .
 ./80sMixtapeAPI
 ```
 
-Output: `80's Mixtape API is listening to some rad jamz on port :8080!`
+Output: `80's Mixtape API is listening on port 8080!`
 
 ### Use cUrl to ping endpoints
 
@@ -57,6 +57,43 @@ Response:
   "up_time": "40.927235051s"
 }
 ```
+
+## API Endpoints
+
+### GET /songs/:last_value/:limit
+
+Paginate through the API's song catalog with calls to the `/songs` endpoint. Pagination uses the seek method. Include the last id value from the previous page and the page size _limit_ with each GET request.
+
+Example, walk through the song catalog with a page size of 10:
+
+* Page 1: `curl http://0.0.0.0:8080/songs/0/10`
+* Page 2: `curl http://0.0.0.0:8080/songs/10/10`
+* Page 3: `curl http://0.0.0.0:8080/songs/20/10`
+
+A list of song objects will be returned as a JSON response.
+
+```json
+[{
+    "id": 1,
+    "title": "Call Me",
+    "artist": "Blondie",
+    "year": 1980,
+    "video": "https://music.youtube.com/watch?v=StKVS0eI85I",
+    "duration_label": "2:15",
+    "duration": 135
+  },
+  {
+    "id": 2,
+    "title": "Another Brick In The Wall",
+    "artist": "Pink Floyd",
+    "year": 1980,
+    "video": "https://music.youtube.com/watch?v=HrxX9TBj2zY",
+    "duration_label": "3:19",
+    "duration": 199
+  }]
+```
+
+Note, `duration` is in seconds.
 
 ## Testing
 
