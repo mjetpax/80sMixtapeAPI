@@ -30,7 +30,7 @@ func main() {
 	// Set up some routes
 	router := httprouter.New()
 	router.GET("/health", api.GetHealth)
-	router.GET("/songs", api.GetSongs)
+	router.GET("/songs/:last_value/:limit", api.GetSongs)
 
 	log.Fatal(http.ListenAndServe(port, router))
 }
