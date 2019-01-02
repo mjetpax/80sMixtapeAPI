@@ -13,8 +13,8 @@ type Song struct {
 	Artist        string `db:"artist" json:"artist"`
 	Year          int    `db:"year" json:"year"`
 	Video         string `db:"video" json:"video"`
-	DurationLabel string `db:"duration_label" json:"duration_label"`
-	Duration      int    `db:"duration" json:"duration"`
+	DurationLabel string `db:"duration_label" json:"play_time"`
+	Duration      int    `db:"duration" json:"-"`
 }
 
 // QueryParams struct for use with select queries
@@ -24,7 +24,7 @@ type QueryParams struct {
 }
 
 // FetchSongs retrieves all songs from the database.
-func FetchSongs(lastValue int, limit int) []Song {
+func FetchSongs(lastValue int, limit int) *[]Song {
 	songs := []Song{}
 	db := config.Env.DB
 
@@ -55,5 +55,5 @@ func FetchSongs(lastValue int, limit int) []Song {
 		songs = append(songs, song)
 	}
 
-	return songs
+	return &songs
 }
