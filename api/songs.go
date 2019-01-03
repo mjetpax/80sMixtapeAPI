@@ -7,20 +7,23 @@ import (
 	"strconv"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/mjetpax/80sMixtapeAPI/db/models"
+	"github.com/mjetpax/80sMixtapeAPI/config"
+	"github.com/mjetpax/80sMixtapeAPI/data/models"
 )
 
 // GetSongs gets songs from model and returns them.
-func GetSongs(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func GetSongs(services *config.Services) httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
-	lastValue, _ := strconv.Atoi(ps.ByName("last_value"))
-	limit, _ := strconv.Atoi(ps.ByName("limit"))
+		lastValue, _ := strconv.Atoi(ps.ByName("last_value"))
+		limit, _ := strconv.Atoi(ps.ByName("limit"))
 
-	songs := models.FetchSongs(lastValue, limit)
+		songs := models.FetchSongs(services.DB, lastValue, limit)
 
-	err := json.NewEncoder(w).Encode(songs)
-	if err != nil {
-		log.Println(err.Error())
+		err := json.NewEncoder(w).Encode(songs)
+		if err != nil {
+			log.Println(err.Error())
+		}
+		return
 	}
-	return
 }

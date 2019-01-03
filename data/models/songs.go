@@ -3,7 +3,7 @@ package models
 import (
 	"log"
 
-	"github.com/mjetpax/80sMixtapeAPI/config"
+	"github.com/jmoiron/sqlx"
 )
 
 // Song is a struct for housing song data.
@@ -24,9 +24,8 @@ type QueryParams struct {
 }
 
 // FetchSongs retrieves all songs from the database.
-func FetchSongs(lastValue int, limit int) *[]Song {
+func FetchSongs(db *sqlx.DB, lastValue int, limit int) *[]Song {
 	songs := []Song{}
-	db := config.Env.DB
 
 	// Paginate with the seek method
 	queryParams := QueryParams{

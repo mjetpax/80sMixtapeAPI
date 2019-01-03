@@ -1,4 +1,4 @@
-package db
+package data
 
 import (
 	"database/sql"
@@ -14,7 +14,7 @@ import (
 func MigrateDB() {
 
 	migrations := &migrate.FileMigrationSource{
-		Dir: "db/migrations",
+		Dir: "data/migrations",
 	}
 
 	// migrate needs database/sql to operate

@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mjetpax/80sMixtapeAPI/config"
+	"github.com/jmoiron/sqlx"
 )
 
 // Cassette struct for storing songs in cassette format.
@@ -46,7 +46,7 @@ func (cs *CassetteSide) SetDurationLabel() {
 
 // FetchCassette query database random songs and create cassette.
 // Args cassetteTypes C120, C90, C60
-func FetchCassette(cassetteType string) *Cassette {
+func FetchCassette(db *sqlx.DB, cassetteType string) *Cassette {
 
 	sideLength, typeLabel := GetCassetteMeta(cassetteType)
 
@@ -55,7 +55,6 @@ func FetchCassette(cassetteType string) *Cassette {
 	songCount := sideLength/2 + 10
 
 	songs := []Song{}
-	db := config.Env.DB
 
 	query := `SELECT id, title, artist, year,
 	video, duration_label, duration

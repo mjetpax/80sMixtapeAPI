@@ -2,19 +2,21 @@ package config
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/jmoiron/sqlx"
-	_ "github.com/lib/pq"
 )
+
+// Services is for a persistent database connections and other services
+type Services struct {
+	DB *sqlx.DB
+}
 
 // Env set configuration struct
 var Env Environment
 
 // Environment struct for storing configuration settings.
 type Environment struct {
-	DB     *sqlx.DB
 	DBHost string
 	DBPort string
 	DBName string
@@ -32,13 +34,6 @@ func InitEnv() {
 	Env.DBPass = GetEnvVar("DATABASE_PASS", "database123")
 	Env.DBConn = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		Env.DBHost, Env.DBPort, Env.DBUser, Env.DBPass, Env.DBName)
-
-	db, err := sqlx.Connect("postgres", Env.DBConn)
-	if err != nil {
-		log.Panic(err)
-	}
-
-	Env.DB = db
 }
 
 // GetEnvVar get the environmental variable for a key or return the specified default value.
