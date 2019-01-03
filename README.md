@@ -60,6 +60,55 @@ Response:
 
 ## API Endpoints
 
+### GET /cassette/:cassette_type
+
+_cassette type is optional_
+
+The endpoint `/cassette/:cassette_type` is the main endpoint for this API. It creates a play list JSON response structured as if it were a cassette tape, with A and B sides. Optionally, pass along one of three cassette types, **C60, C90, C120**. Cassette types are used to indicate cassette tape storage capacity. For example, C90 indicates 90 minutes of playback time, 45 minutes per side. If excluded C60 is selected by default.
+
+Examples:
+
+`curl http://0.0.0.0:8080/cassette`
+
+`curl http://0.0.0.0:8080/cassette/C90`
+
+Example result:
+
+```json
+{
+  "tape_type": "C60",
+  "side_a": {
+    "songs": [
+      {
+        "id": 85,
+        "title": "Karma Chameleon",
+        "artist": "Culture Club",
+        "year": 1984,
+        "video": "https://music.youtube.com/watch?v=JvBInlDDQaU",
+        "play_time": "4:21"
+      },
+      ...
+    ],
+    "play_time": "29:13"
+  },
+  "side_b": {
+    "songs": [
+      {
+        "id": 56,
+        "title": "I Can't Go For That",
+        "artist": "Daryl Hall & John Oates",
+        "year": 1982,
+        "video": "https://music.youtube.com/watch?v=EHaJLvQgEOM",
+        "play_time": "6:45"
+      },
+      ...
+    ],
+    "play_time": "27:39"
+  }
+}
+```
+
+
 ### GET /songs/:last_value/:limit
 
 Paginate through the API's song catalog with calls to the `/songs` endpoint. Pagination uses the seek method. Include the last id value from the previous page and the page size _limit_ with each GET request.
@@ -79,8 +128,7 @@ A list of song objects will be returned as a JSON response.
     "artist": "Blondie",
     "year": 1980,
     "video": "https://music.youtube.com/watch?v=StKVS0eI85I",
-    "duration_label": "2:15",
-    "duration": 135
+    "duration_label": "2:15"
   },
   {
     "id": 2,
@@ -88,8 +136,7 @@ A list of song objects will be returned as a JSON response.
     "artist": "Pink Floyd",
     "year": 1980,
     "video": "https://music.youtube.com/watch?v=HrxX9TBj2zY",
-    "duration_label": "3:19",
-    "duration": 199
+    "duration_label": "3:19"
   }]
 ```
 
