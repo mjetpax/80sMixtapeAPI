@@ -32,7 +32,7 @@ func main() {
 	router.GET("/health", api.GetHealth)
 	router.GET("/songs/:last_value/:limit", api.GetSongs)
 	router.GET("/cassette", api.GetCassette)
-	router.GET("/cassette/:cassette_type", api.GetCassette)
+	router.GET("/cassette/*cassette_type", api.GetCassette)
 
 	log.Fatal(http.ListenAndServe(port, router))
 }

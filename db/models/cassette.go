@@ -92,6 +92,7 @@ func FetchCassette(cassetteType string) *Cassette {
 // Returns tape single side duration in minutes (int) and type label (string).
 func GetCassetteMeta(cassetteType string) (int, string) {
 	cassetteType = strings.ToUpper(cassetteType)
+	cassetteType = strings.Replace(cassetteType, "/", "", 1)
 
 	switch cassetteType {
 	case "C120":
