@@ -49,11 +49,31 @@ Response:
 {
   "application_name": "80's Mixtape API",
   "message": "80's Mixtape API is running smooth!",
-  "up_time": "40.927235051s"
+  "start_date": "2019-01-04 23:18:11.826575403 +0000 UTC",
+  "up_time": "4.300778317s"
 }
 ```
 
 ## API Endpoints
+
+### GET /health
+
+Check the app's start date up time and other bits of info.
+
+Examples:
+
+`curl http://0.0.0.0:8080/health`
+
+Example result:
+
+```json
+{
+  "application_name": "80's Mixtape API",
+  "message": "80's Mixtape API is running smooth!",
+  "start_date": "2019-01-04 23:18:11.826575403 +0000 UTC",
+  "up_time": "4.300778317s"
+}
+```
 
 ### GET /cassette/:cassette_type
 
