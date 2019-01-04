@@ -4,12 +4,12 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/jmoiron/sqlx"
 	"github.com/julienschmidt/httprouter"
 	_ "github.com/lib/pq"
 	"github.com/mjetpax/80sMixtapeAPI/api"
 	"github.com/mjetpax/80sMixtapeAPI/config"
 	"github.com/mjetpax/80sMixtapeAPI/data"
+	"github.com/mjetpax/80sMixtapeAPI/data/models"
 )
 
 const port = ":8080"
@@ -29,15 +29,15 @@ func init() {
 
 func main() {
 	// Set default db connection.
-	db, err := sqlx.Connect("postgres", config.Env.DBConn)
+	db, err := models.NewDatabase(config.Env.DBConn)
 	if err != nil {
 		log.Panic(err)
 	}
 
+	services = config.Services{DB: db}
+
 	// Close database connection when app exits.
 	defer services.DB.Close()
-
-	services = config.Services{DB: db}
 
 	// Set up some routes
 	router := httprouter.New()
