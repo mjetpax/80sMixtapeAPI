@@ -6,7 +6,14 @@ Author: Michael Babcock <mjetpax@gmail.com>
 
 ## Getting started
 
-Getting started locally is simple. Run the following commands in your terminal.
+Getting started locally is simple. Make sure you have all the requirements on your local machine. Then run the Docker Compose commands in your terminal. Note, that Go is not required to run the dockerized application. It is only required for development.
+
+### Requirements
+
+* [Docker](https://docs.docker.com/get-started/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
+* [Go programming language](https://golang.org/doc/install) (not required to run the app in Docker)
+* [cURL](https://duckduckgo.com/?q=curl+getting+started) (optional)
 
 ### Running with Docker Compose
 
@@ -16,25 +23,13 @@ Note, that while developing & running with docker-compose, 80's Mixtape API will
 docker-compose up
 ```
 
+This will launch the application and a development database. When the app is ready, you'll see this output `80's Mixtape API is listening on port 8080!` in your terminal.
+
 (Seriously, that's it.)
 
-### Alternative - running with Docker
+* See Appendix below for more options.
 
-```bash
-docker build -t 80s_mixtape_api .
-docker run -p 8080:8080 80s_mixtape_api
-```
-
-### Alternative - running the Go app locally
-
-```bash
-go build .
-./80sMixtapeAPI
-```
-
-Output: `80's Mixtape API is listening on port 8080!`
-
-### Use cUrl to ping endpoints
+### Use cURL to ping endpoints
 
 Hit the health check endpoint with cUrl.
 
@@ -149,3 +144,21 @@ Use this command for running unit tests.
 ```bash
 go test -v -cover -covermode=atomic $(go list ./... | grep -v /vendor/)
 ```
+
+## Appendix
+
+### Alternative - running with Docker
+
+```bash
+docker build -t 80s_mixtape_api .
+docker run -p 8080:8080 80s_mixtape_api
+```
+
+### Alternative - running the Go app locally
+
+```bash
+go build .
+./80sMixtapeAPI
+```
+
+Output: `80's Mixtape API is listening on port 8080!`
