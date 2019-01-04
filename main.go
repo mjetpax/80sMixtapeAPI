@@ -23,21 +23,21 @@ func init() {
 	// Make database migrations as needed.
 	data.MigrateDB()
 
+	// Ready to go!
+	log.Println("80's Mixtape API is listening on port " + port[1:] + "!")
+}
+
+func main() {
 	// Set default db connection.
 	db, err := sqlx.Connect("postgres", config.Env.DBConn)
 	if err != nil {
 		log.Panic(err)
 	}
 
-	services = config.Services{DB: db}
-
-	// Ready to go!
-	log.Println("80's Mixtape API is listening on port " + port[1:] + "!")
-}
-
-func main() {
 	// Close database connection when app exits.
 	defer services.DB.Close()
+
+	services = config.Services{DB: db}
 
 	// Set up some routes
 	router := httprouter.New()
