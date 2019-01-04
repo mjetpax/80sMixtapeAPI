@@ -133,12 +133,10 @@ A list of song objects will be returned as a JSON response.
   }]
 ```
 
-Note, `duration` is in seconds.
-
 ## Testing
 
 Use this command for running unit tests.
 
 ```bash
-go test -v -cover -covermode=atomic $(go list ./... | grep -v /vendor/)
+go test -v -cover -covermode=atomic ./...
 ```
