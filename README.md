@@ -27,8 +27,6 @@ This will launch the application and a development database. When the app is rea
 
 (Seriously, that's it.)
 
-* See Appendix below for more options.
-
 ### Use cURL to ping endpoints
 
 Hit the health check endpoint with cUrl.
@@ -144,21 +142,3 @@ Use this command for running unit tests.
 ```bash
 go test -v -cover -covermode=atomic $(go list ./... | grep -v /vendor/)
 ```
-
-## Appendix
-
-### Alternative - running with Docker
-
-```bash
-docker build -t 80s_mixtape_api .
-docker run -p 8080:8080 80s_mixtape_api
-```
-
-### Alternative - running the Go app locally
-
-```bash
-go build .
-./80sMixtapeAPI
-```
-
-Output: `80's Mixtape API is listening on port 8080!`
