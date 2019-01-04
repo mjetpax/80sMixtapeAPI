@@ -24,6 +24,11 @@ func TestCassette(t *testing.T) {
 	}{
 		{
 			description:  "Casssette - default",
+			url:          "/cassette/",
+			expectedCode: http.StatusOK,
+		},
+		{
+			description:  "Casssette - C60",
 			url:          "/cassette/C60",
 			expectedCode: http.StatusOK,
 		},
