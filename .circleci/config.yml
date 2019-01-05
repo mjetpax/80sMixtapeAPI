@@ -8,4 +8,8 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
-      - run: go test -v -cover -covermode=atomic ./...
+      - run: |
+          go get golang.org/x/tools/cmd/cover
+          go get github.com/mattn/goveralls
+      - run: go test -v -cover -coverprofile=/tmp/test.coverprofile -covermode=atomic $(go list ./... | grep -v /vendor/)
+      - run: goveralls -coverprofile=/tmp/test.coverprofile -service=circle-ci -repotoken=$COVERALLS_TOKEN
