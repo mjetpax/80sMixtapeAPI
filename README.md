@@ -19,9 +19,17 @@ Getting started locally is simple. Make sure you have all the requirements on yo
 * [Go programming language](https://golang.org/doc/install) (not required to run the app in Docker)
 * [cURL](https://duckduckgo.com/?q=curl+getting+started) (optional)
 
+### Local .env file
+
+To run the app locally, you'll need to create an .env file with store environmental variables. An example.env file has been included. Run the following command and your done. Painless... I know.
+
+```bash
+cp example.env .env
+```
+
 ### Running with Docker Compose
 
-Note, that while developing & running with docker-compose, 80's Mixtape API will auto-compile and redeploy on script update... yay!
+Make sure you created a .env file as instructed above before proceeding. Note, that while developing & running with docker-compose, 80's Mixtape API will auto-compile and redeploy on script update (on save)... yay!
 
 ```bash
 docker-compose up
@@ -162,5 +170,5 @@ A list of song objects will be returned as a JSON response.
 Use this command for running unit tests.
 
 ```bash
-go test -v -cover -covermode=atomic ./...
+go test -v ./...
 ```
